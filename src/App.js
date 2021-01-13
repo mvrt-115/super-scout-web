@@ -6,12 +6,12 @@ import Scanner from './pages/Scanner';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/scanner" component={Scanner} />
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/scanner" component={Scanner} />
+        </Switch>
+      </Router>
   );
 }
 
