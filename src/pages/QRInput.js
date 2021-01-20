@@ -113,4 +113,6 @@ function QRInput() {
     </div>
   );
 }
+
+//for commuit
 export default QRInput;
