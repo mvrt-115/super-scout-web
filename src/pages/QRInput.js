@@ -1,66 +1,116 @@
-import { useState } from 'react';
+import { useState } from "react";
 function QRInput() {
-    var QRCode = require('qrcode.react');
+  let QRCode = require("qrcode.react");
 
-    const [qrcode, setQRCode] = useState();
-    function genQrCode (matchNum, regional, alliance, team1, team2, team3)
-    {
-    
-      let json = `${matchNum}@${regional}:${alliance}[${team1},${team2},${team3}]`;
-      console.log( json );
-    
-      return (
-        <QRCode value={json} />
-      );
-    }
+  const [qrcode, setQRCode] = useState();
+  function genQrCode(matchNum, regional, alliance, team1, team2, team3) {
+    let json = `${matchNum}@${regional}:${alliance}[${team1},${team2},${team3}]`;
+    console.log(json);
 
-    function getInput(event)
-    {
-      event.preventDefault();
-    
-      console.log( event.target );
-      const matchNum = event.target.elements["match-num"].value;
-      const regional = event.target.elements["regional"].value;
-      const alliance = event.target.elements["alliance"].value;
-      const team1 = event.target.elements["team 1"].value;
-      const team2 = event.target.elements["team 2"].value;
-      const team3 = event.target.elements["team 3"].value;
-    
-      console.log("Hello world")
-      setQRCode( genQrCode( matchNum, regional, alliance, team1, team2, team3));
-      
-    }
+    return <QRCode value={json} />;
+  }
 
-    return (
-        <div className="input">
-            <form onSubmit={getInput}>
-                <h3>Regional:</h3>
-                <div className="rounded-md order-red-600">
-                <select  name="regional">
-                  <option value="">Select</option>
-                  <option value="LAN">LAN</option>
-                </select>
-                </div>
+  function getInput(event) {
+    event.preventDefault();
 
-                <h3>Match Number:</h3>
-                <input type = "number" id="match-num" min="1"/>
+    console.log(event.target);
+    const matchNum = event.target.elements["match-num"].value;
+    const regional = event.target.elements["regional"].value;
+    const alliance = event.target.elements["alliance"].value;
+    const team1 = event.target.elements["team 1"].value;
+    const team2 = event.target.elements["team 2"].value;
+    const team3 = event.target.elements["team 3"].value;
 
-                <h3>Alliance:</h3>
-                <select className="rounded-md" id="alliance">
-                  <option className="rounded-md" value="">Select</option>
-                  <option className="rounded-md" value="b">Blue</option>
-                  <option className="rounded-md" value="r">Red</option>
-                </select>
+    console.log("Hello world");
+    setQRCode(genQrCode(matchNum, regional, alliance, team1, team2, team3));
+  }
 
-                <h3>Team Numbers:</h3>
-                  <input type = "number" id="team1" min="1" className="input"/>
-                  <input type = "number" id="team2" min="1" className="input"/>
-                  <input type = "number" id="team3" min="1" className="input"/>
-
-                <button>Generate QR Code</button>
-            </form>
-            {qrcode}
+  return (
+    <div className="p-5 pt-2">
+      <form onSubmit={getInput} className="flex flex-col space-y-10">
+        <div className="flex flex-col">
+          <h3>Regional:</h3>
+          <select
+            className="bg-yellow-300 px-3	py-1 rounded-md appearence-none"
+            name="regional"
+            placeholder="select"
+          >
+            <option value="">Select</option>
+            <option value="LAN">LAN</option>
+          </select>
         </div>
-  )
+
+        <div className="flex flex-col">
+          <h3>Match Number:</h3>
+          <input
+            type="number"
+            className="border rounded-md py-1 px-3 text-grey-darkes bg-green-200	"
+            id="match-num"
+            min="1"
+          />
+        </div>
+        <div className="flex flex-col">
+          <h3 className="">Alliance:</h3>
+          <select
+            className="bg-yellow-300 px-3	py-1 rounded-md appearence-none"
+            id="alliance"
+          >
+            <option
+              className="bg-yellow-300	rounded-md appearence-none"
+              value=""
+            >
+              Select
+            </option>
+            <option
+              className="bg-yellow-300	rounded-md appearence-none"
+              value="b"
+            >
+              Blue
+            </option>
+            <option
+              className="bg-yellow-300	rounded-md appearence-none"
+              value="r"
+            >
+              Red
+            </option>
+          </select>
+        </div>
+
+        <div className="flex flex-col">
+          <h3>Team Numbers:</h3>
+          <div className="flex flex-row flex-wrap">
+            <input
+              type="number"
+              className="border rounded-md py-1 px-2 text-grey-darkes bg-green-200 flex-1 flex-auto m-1"
+              id="team 1"
+              min="1"
+              placeholder="team 1"
+            />
+            <input
+              type="number"
+              className="border rounded-md py-1 px-2 text-grey-darkes bg-green-200 flex-1 flex-auto m-1"
+              id="team 2"
+              min="1"
+              placeholder="team 2"
+            />
+            <input
+              type="number"
+              className="border rounded-md py-1 px-2 text-grey-darkes bg-green-200 flex-1 flex-auto m-1"
+              id="team 3"
+              min="1"
+              placeholder="team 3"
+            />
+          </div>
+        </div>
+        <button
+          className="bg-blue-700 text-green-500 uppercase text-lg font-bold  p-4 rounded hover:bg-green-700 "
+          type="submit"
+        >
+          Generate QR Code
+        </button>
+      </form>
+      {qrcode}
+    </div>
+  );
 }
 export default QRInput;

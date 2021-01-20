@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { db } from '../firebase';
+// eslint-disable-next-line
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { db } from "../firebase";
 import QRInput from "./QRInput";
 
-
-
 function Home() {
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -15,7 +13,7 @@ function Home() {
           data: {
             matchNum: 10,
             teamNum: 31,
-            startLocations: 'true,false,false',
+            startLocations: "true,false,false",
             initLineCrosses: true,
             preloads: 6,
             autonUpper: 7,
@@ -41,35 +39,35 @@ function Home() {
             attemptHang: true,
             attemptLevel: true,
             buddy: false,
-            comments: '',
-            minfo: '31@CASF:b[31,75,95]',
+            comments: "",
+            minfo: "31@CASF:b[31,75,95]",
             sctid: 0,
           },
           verif: 9613,
         };
 
-        const minfo = data['data']['minfo'];
+        const minfo = data["data"]["minfo"];
 
         const regional = minfo.substring(
-          minfo.indexOf('@') + 1,
-          minfo.indexOf(':')
+          minfo.indexOf("@") + 1,
+          minfo.indexOf(":")
         );
-        const match = data['data']['matchNum'] + '';
+        const match = data["data"]["matchNum"] + "";
         const isBlueAlliance =
-          minfo.substring(minfo.indexOf(':') + 1, minfo.indexOf('[')) === 'b';
-        const alliance = isBlueAlliance ? 'blue' : 'red';
-        const team = data['data']['teamNum'] + '';
+          minfo.substring(minfo.indexOf(":") + 1, minfo.indexOf("[")) === "b";
+        const alliance = isBlueAlliance ? "blue" : "red";
+        const team = data["data"]["teamNum"] + "";
 
         console.log(regional, match, alliance, team);
 
         await db
-          .collection('regional')
+          .collection("regional")
           .doc(regional)
-          .collection('matches')
+          .collection("matches")
           .doc(match)
           .collection(alliance)
           .doc(team)
-          .set(data['data']);
+          .set(data["data"]);
       } catch (e) {
         console.log(e);
       }
@@ -78,21 +76,29 @@ function Home() {
   }, []);
 
   return (
-    <>
-      <section className = "bg-purple-900" id="title">
-        <h1 className="text-5xl text-red-50">Super Scout</h1>
-        <h2 className="text-2xl text-red-50">Home</h2>
+    <div>
+      <section className="bg-purple-900 p-3" id="title">
+        <h1 className="text-5xl text-blue-300	">Super Scout</h1>
+        <div className="flex flex-row space-x-4">
+          <h2 className="text-2xl text-blue-300	">Home</h2>
+          <Link
+            className="text-2xl no-underline hover:underline text-yellow-300"
+            to="/scanner"
+          >
+            Scanner
+          </Link>
+        </div>
       </section>
-      
-      <Link to="/scanner">Scanner</Link>
-      <QRInput />
-      {/* <ul>
+
+      <div>
+        <QRInput />
+        {/* <ul>
         {qrcodes.map((i, qrcode) => (
           <li key={i}>{qrcode}</li>
         ))}
       </ul> */}
-
-    </>
+      </div>
+    </div>
   );
 }
 
