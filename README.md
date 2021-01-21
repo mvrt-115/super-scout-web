@@ -1,5 +1,6 @@
-# Insta
+# Type the following commands into terminal before running project
 ```
+npm install
 npm install qrcode.react
 npm install --save react-qr-reader
 npm install @craco/craco --save 
