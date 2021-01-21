@@ -1,3 +1,11 @@
+# Insta
+```
+npm install qrcode.react
+npm install --save react-qr-reader
+npm install @craco/craco --save 
+npm install tailwindcss@npm:@tailwindcss/postcss7-compat @tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

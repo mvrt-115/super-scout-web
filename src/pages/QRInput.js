@@ -1,4 +1,5 @@
 import { useState } from "react";
+import QRScanner from "./QRScanner"
 function QRInput() {
   let QRCode = require("qrcode.react");
 
@@ -110,6 +111,10 @@ function QRInput() {
         </button>
       </form>
       {qrcode}
+
+      {/* <vh/> */}
+
+      <QRScanner/>
     </div>
   );
 }
