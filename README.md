@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 # Install Libraries
+=======
+# Type the following commands into terminal before running project
+>>>>>>> 074a43cf217d7154ecdbd4d9afe11a54dec45c64
 ```
+npm install
 npm install qrcode.react
 npm install --save react-qr-reader
 npm install @craco/craco --save 
