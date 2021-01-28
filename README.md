@@ -1,4 +1,4 @@
-# Insta
+# Install Libraries
 ```
 npm install qrcode.react
 npm install --save react-qr-reader
