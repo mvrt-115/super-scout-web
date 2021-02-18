@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "mvrt-super-scout"
+  },
+  "targets": {
+    "mvrt-super-scout": {
+      "hosting": {
+        "web": [
+          "mvrt-super-scoutmvrt-super-scout"
+        ],
+        "mvrt-super-scout-scanner": [
+          "mvrt-super-scout"
+        ]
+      }
+    }
+  }
+}

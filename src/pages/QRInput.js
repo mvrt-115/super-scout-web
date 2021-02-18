@@ -1,14 +1,13 @@
 import { useState } from "react";
-import QRScanner from "./QRScanner"
 function QRInput() {
   let QRCode = require("qrcode.react");
 
   const [qrcode, setQRCode] = useState();
+
   function genQrCode(matchNum, regional, alliance, team1, team2, team3) {
     let json = `${matchNum}@${regional}:${alliance}[${team1},${team2},${team3}]`;
-    console.log(json);
 
-    return <QRCode value={json} />;
+    return <QRCode value={json} size="256" style={{marginLeft: "33%", marginRight: "33%"}} />;
   }
 
   function getInput(event) {
@@ -31,45 +30,46 @@ function QRInput() {
       <form onSubmit={getInput} className="flex flex-col space-y-10">
         <div className="flex flex-col">
           <h3>Regional:</h3>
-          <select
-            className="bg-yellow-300 px-3	py-1 rounded-md appearence-none"
+          <select required
+            className="background-color-yellow px-3	py-1 rounded-md appearence-none"
             name="regional"
-            placeholder="select"
           >
-            <option value="">Select</option>
+            <option value="" disabled selected>Select</option>
             <option value="LAN">LAN</option>
           </select>
         </div>
 
         <div className="flex flex-col">
           <h3>Match Number:</h3>
-          <input
+          <input required
             type="number"
-            className="border rounded-md py-1 px-3 text-grey-darkes bg-green-200	"
+            className="border rounded-md py-1 px-3 background-color-purple	"
             id="match-num"
             min="1"
           />
         </div>
         <div className="flex flex-col">
           <h3 className="">Alliance:</h3>
-          <select
-            className="bg-yellow-300 px-3	py-1 rounded-md appearence-none"
+          <select required
+            className="background-color-yellow px-3	py-1 rounded-md appearence-none"
             id="alliance"
           >
-            <option
-              className="bg-yellow-300	rounded-md appearence-none"
+            <option disabled selected
+              className="background-color-yellow	rounded-md appearence-none"
               value=""
             >
               Select
             </option>
             <option
-              className="bg-yellow-300	rounded-md appearence-none"
+              className="rounded-md appearence-none"
+              style={{color: "blue"}}
               value="b"
             >
               Blue
             </option>
             <option
-              className="bg-yellow-300	rounded-md appearence-none"
+              className="rounded-md appearence-none"
+              style={{color: "red"}}
               value="r"
             >
               Red
@@ -80,23 +80,23 @@ function QRInput() {
         <div className="flex flex-col">
           <h3>Team Numbers:</h3>
           <div className="flex flex-row flex-wrap">
-            <input
+            <input required
               type="number"
-              className="border rounded-md py-1 px-2 text-grey-darkes bg-green-200 flex-1 flex-auto m-1"
+              className="border rounded-md py-1 px-2 background-color-purple flex-1 flex-auto m-1"
               id="team 1"
               min="1"
               placeholder="team 1"
             />
-            <input
+            <input required
               type="number"
-              className="border rounded-md py-1 px-2 text-grey-darkes bg-green-200 flex-1 flex-auto m-1"
+              className="border rounded-md py-1 px-2 background-color-purple flex-1 flex-auto m-1"
               id="team 2"
               min="1"
               placeholder="team 2"
             />
-            <input
+            <input required
               type="number"
-              className="border rounded-md py-1 px-2 text-grey-darkes bg-green-200 flex-1 flex-auto m-1"
+              className="border rounded-md py-1 px-2 background-color-purple flex-1 flex-auto m-1"
               id="team 3"
               min="1"
               placeholder="team 3"
@@ -104,17 +104,19 @@ function QRInput() {
           </div>
         </div>
         <button
-          className="bg-blue-700 text-green-500 uppercase text-lg font-bold  p-4 rounded hover:bg-green-700 "
+          className="bg-blue-700 text-gray-50 uppercase text-lg font-bold  p-4 rounded"
           type="submit"
         >
           Generate QR Code
         </button>
       </form>
+
+      <br />
+      <hr />
+      <br />
+
+      {qrcode && <h1 className="text-2xl">Your QR Code:</h1>}
       {qrcode}
-
-      {/* <vh/> */}
-
-      <QRScanner/>
     </div>
   );
 }

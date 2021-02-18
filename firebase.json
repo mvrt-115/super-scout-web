@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "build",
+    "site": "mvrt-super-scout-scanner",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
