@@ -1,8 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
 function QRInput() {
   let QRCode = require("qrcode.react");
 
+  const [regionals, setRegionals] = useState([]);
   const [qrcode, setQRCode] = useState();
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const regionalRef = await db.collection("regional").get();
+
+      setRegionals(regionalRef.docs.map(doc => doc.id))
+    }
+    fetchData();
+  }, [])
 
   function genQrCode(matchNum, regional, alliance, team1, team2, team3) {
     let json = `${matchNum}@${regional}:${alliance}[${team1},${team2},${team3}]`;
@@ -21,7 +32,6 @@ function QRInput() {
     const team2 = event.target.elements["team 2"].value;
     const team3 = event.target.elements["team 3"].value;
 
-    console.log("Hello world");
     setQRCode(genQrCode(matchNum, regional, alliance, team1, team2, team3));
   }
 
@@ -33,9 +43,10 @@ function QRInput() {
           <select required
             className="background-color-yellow px-3	py-1 rounded-md appearence-none"
             name="regional"
+            defaultValue=""
           >
-            <option value="" disabled selected>Select</option>
-            <option value="LAN">LAN</option>
+            <option value="" disabled>Select</option>
+            {regionals.map(regional => <option value={regional} key={regional} >{regional}</option>)}
           </select>
         </div>
 
@@ -50,11 +61,11 @@ function QRInput() {
         </div>
         <div className="flex flex-col">
           <h3 className="">Alliance:</h3>
-          <select required
+          <select required defaultValue=""
             className="background-color-yellow px-3	py-1 rounded-md appearence-none"
             id="alliance"
           >
-            <option disabled selected
+            <option disabled
               className="background-color-yellow	rounded-md appearence-none"
               value=""
             >
