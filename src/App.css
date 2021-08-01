@@ -1,34 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-body,html{
-    margin: 0px;
-    padding: 0px;
+/* body,
+html {
+  margin: 0px;
+  padding: 0px;
 }
 
 .color-yellow {
-    color: #ffc410
+  color: #ffc410;
 }
 
 .background-color-yellow {
-    background-color: #ffc410
+  background-color: #ffc410;
 }
 
 .background-color-purple {
-    background-color: #6a3297
+  background-color: #6a3297;
 }
 
 .center {
-    margin: 0;
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+} */
 
 /* #title{
    background-color: purple;
