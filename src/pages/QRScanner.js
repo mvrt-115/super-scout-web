@@ -1,7 +1,17 @@
 import React, { useEffect } from "react";
 import QrReader from "react-qr-reader";
 import { db } from "../firebase";
-import { Button, Heading, Table, Td, Th, Thead, Tr } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  IconButton,
+  Table,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 const QRScanner = () => {
   const [data, setData] = React.useState([]);
   const [scan, setScan] = React.useState(false);
@@ -58,10 +68,12 @@ const QRScanner = () => {
       ) : (
         <Button onClick={() => setScan(false)}>Cancel</Button>
       )}
-      {data.length && (
+      {data.length ? (
         <Button onClick={uploadData} colorScheme="green">
           Upload Matches
         </Button>
+      ) : (
+        <></>
       )}
       {scan && (
         <QrReader
@@ -92,10 +104,20 @@ const QRScanner = () => {
               </Tr>
             </Thead>
             <tbody>
-              {data.map((match) => (
-                <Tr>
+              {data.map((match, index) => (
+                <Tr key={index}>
                   <Td>{match.data.matchNum}</Td>
                   <Td>{match.data.teamNum}</Td>
+                  <IconButton
+                    icon={<DeleteIcon />}
+                    colorScheme="red"
+                    onClick={() => {
+                      const newData = [...data];
+                      newData.splice(index, 1);
+                      localStorage.setItem("matches", JSON.stringify(newData));
+                      setData(newData);
+                    }}
+                  />
                 </Tr>
               ))}
             </tbody>
