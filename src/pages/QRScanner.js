@@ -23,38 +23,38 @@ const QRScanner = () => {
 
   function uploadData() {
     data.forEach((match) => {
-      console.log(match.data.regional + "");
+      console.log(match.regional + "");
       db.collection("regional")
-        .doc(match.data.regional)
+        .doc(match.regional)
         .collection("matches")
-        .doc(match.data.matchNum + "")
-        .collection(match.data.alliance)
-        .doc(match.data.teamNum + "")
-        .set({ data: match.data });
+        .doc(match.matchNum + "")
+        .collection(match.alliance)
+        .doc(match.teamNum + "")
+        .set({ data: match });
       db.collection("regional")
-        .doc(match.data.regional)
+        .doc(match.regional)
         .collection("matches")
-        .doc(match.data.matchNum + "")
+        .doc(match.matchNum + "")
         .set({});
 
       db.collection("regional")
-        .doc(match.data.regional)
+        .doc(match.regional)
         .collection("teams")
-        .doc(match.data.teamNum + "")
+        .doc(match.teamNum + "")
         .collection("matches")
-        .doc(match.data.matchNum + "")
-        .set({ data: match.data });
+        .doc(match.matchNum + "")
+        .set({ data: match });
       db.collection("regional")
-        .doc(match.data.regional)
+        .doc(match.regional)
         .collection("teams")
-        .doc(match.data.teamNum + "")
+        .doc(match.teamNum + "")
         .set({});
 
       db.collection("regional")
-        .doc(match.data.regional)
+        .doc(match.regional)
         .collection("raw")
-        .doc(match.data.minfo + match.data.teamNum)
-        .set(match.data);
+        .doc(match.minfo + match.teamNum)
+        .set(match);
     });
 
     setData([]);
@@ -83,11 +83,11 @@ const QRScanner = () => {
           }}
           onScan={(str) => {
             if (str) {
-              setData([...data, { data: JSON.parse(str).data }]);
+              setData([...data, JSON.parse(str)]);
               setScan(!scan);
               localStorage.setItem(
                 "matches",
-                JSON.stringify([...data, { data: JSON.parse(str).data }])
+                JSON.stringify([...data, JSON.parse(str)])
               );
             }
           }}
@@ -106,8 +106,8 @@ const QRScanner = () => {
             <tbody>
               {data.map((match, index) => (
                 <Tr key={index}>
-                  <Td>{match.data.matchNum}</Td>
-                  <Td>{match.data.teamNum}</Td>
+                  <Td>{match.matchNum}</Td>
+                  <Td>{match.teamNum}</Td>
                   <IconButton
                     icon={<DeleteIcon />}
                     colorScheme="red"
